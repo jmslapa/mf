@@ -8,6 +8,7 @@
             "email": "joaomanoel1996@hotmail.com"
         }
     ],
+    "minimum-stability": "stable",
     "autoload": {
         "files": [
             "./helpers.php"
