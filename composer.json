@@ -1,0 +1,20 @@
+{
+    "name": "jmslapa/mf",
+    "description": "Mini framework mvc",
+    "type": "library",
+    "authors": [
+        {
+            "name": "João Manuel dos Santos Lapa",
+            "email": "joaomanoel1996@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "./helpers.php"
+        ],
+        "psr-4": {
+            "Mf\\": "./src"
+        }
+    },
+    "require": {}
+}
