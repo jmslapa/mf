@@ -11,15 +11,19 @@ abstract class Application
 
     public function __construct()
     {
+        $this->errorHandler = new Handler();
         $this->boot();
+        $this->run();
     }
 
     protected abstract function loadRoutes() : array;
 
     protected function boot()
     {
-        $this->errorHandler = new Handler();
+    }
 
+    final protected function run()
+    {
         try {
             $routes = $this->loadRoutes();
             new Router($routes);
