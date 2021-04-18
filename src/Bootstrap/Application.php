@@ -12,11 +12,10 @@ abstract class Application
     public function __construct()
     {
         $this->errorHandler = new Handler();
-        $this->boot();
-        $this->run();
+        $this->init();
     }
 
-    protected abstract function loadRoutes() : array;
+    abstract protected function loadRoutes(): array;
 
     protected function boot()
     {
@@ -24,10 +23,14 @@ abstract class Application
 
     final protected function run()
     {
-        try {
-            $routes = $this->loadRoutes();
-            new Router($routes);
+        new Router($this->loadRoutes());
+    }
 
+    final protected function init()
+    {
+        try {
+            $this->boot();
+            $this->run();
         } catch (\Throwable $th) {
             $this->errorHandler->render($th);
         }
