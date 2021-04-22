@@ -1,0 +1,25 @@
+version: '3'
+services:
+    nginx:
+        image: nginx:1.19
+        container_name: nginx
+        volumes:
+            - .:/var/www
+            - .docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+            - .docker/nginx/conf:/etc/nginx/conf.d
+        ports:
+            - "8080:80"
+        networks:
+            - backend
+
+    php_fpm:
+        build: .docker/php/
+        container_name: php
+        volumes:
+            - .:/var/www
+        networks:
+            - backend
+
+networks:
+    backend:
+        driver: bridge
