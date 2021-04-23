@@ -39,12 +39,11 @@ class Route implements RouteContract
     public static function post(string $path, string $handler): RouteContract
     {
         return new self(self::POST, $path, $handler);
-        
     }
 
     public static function put(string $path, string $handler): RouteContract
     {
-        return new self(self::PUT, $path, $handler);        
+        return new self(self::PUT, $path, $handler);
     }
 
     public static function patch(string $path, string $handler): RouteContract
@@ -66,16 +65,16 @@ class Route implements RouteContract
     {
         $class = "$this->namespace\\$this->controller";
         $action = $this->action;
-        (new $class)->$action();   
+        (new $class)->$action();
     }
 
-    public function namespace(string $namespace) : self
+    public function namespace(string $namespace): self
     {
         $this->namespace = $namespace;
         return $this;
     }
 
-    public static function group(array $routes) : RouteGroupContract
+    public static function group(array $routes): RouteGroupContract
     {
         return new RouteGroup($routes);
     }
