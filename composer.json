@@ -14,10 +14,12 @@
             "./src/Helpers/global-functions.php"
         ],
         "psr-4": {
-            "Mf\\": "./src"
+            "Mf\\": "./src",
+            "Tests\\": "./tests"
         }
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.6"
+        "squizlabs/php_codesniffer": "^3.6",
+        "phpunit/phpunit": "^9.5"
     }
 }
