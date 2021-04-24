@@ -5,7 +5,35 @@ if (!function_exists('dump')) {
     {
         echo '<pre>';
         print_r($subject);
-        echo '</pre';
+        echo '</pre>';
+        die();
+    }
+}
+
+if (!function_exists('kDump')) {
+    function kDump($subject)
+    {
+        if ($subject instanceof Throwable) {
+            $class = get_class($subject);
+
+            $echo = <<<EOF
+            \033[01;37;41m Exception: {$class} \033[0m
+
+            \033[00;36mMessage:\033[0m \033[00;32m{$subject->getMessage()}\033[0m
+
+            \033[01;37;45m Stack Trace: \033[0m
+
+            \033[00;33m{$subject->getTraceAsString()}\033[0m
+            EOF;
+            echo "$echo\n";
+            die();
+        } else {
+            $dump = print_r($subject, true);
+            $echo = <<<EOF
+            \033[01;32m{$dump}\033[0m
+            EOF;
+            echo "$echo\n";
+        }
         die();
     }
 }
