@@ -2,6 +2,7 @@
 
 namespace Mf\Routes;
 
+use Mf\Container\Container;
 use Mf\Contracts\Routes\RouteContract;
 use Mf\Contracts\Http\ControllerContract;
 use Mf\Contracts\Routes\RouteGroupContract;
@@ -14,11 +15,11 @@ class Route implements RouteContract
     private string $action;
     private string $namespace;
 
-    const GET = 'GET';
-    const POST = 'POST';
-    const PUT = 'PUT';
-    const PATCH = 'PATCH';
-    const DELETE = 'DELETE';
+    protected const GET = 'GET';
+    protected const POST = 'POST';
+    protected const PUT = 'PUT';
+    protected const PATCH = 'PATCH';
+    protected const DELETE = 'DELETE';
 
     private function __construct(string $method, string $path, string $handler)
     {
@@ -65,7 +66,7 @@ class Route implements RouteContract
     {
         $class = "$this->namespace\\$this->controller";
         $action = $this->action;
-        (new $class)->$action();
+        Container::getInstance()->resolve($class)->$action();
     }
 
     public function namespace(string $namespace): self
