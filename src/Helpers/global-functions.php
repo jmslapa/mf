@@ -43,7 +43,7 @@ if (!function_exists('src')) {
     function src(string $path)
     {
         $_ = DIRECTORY_SEPARATOR;
-        return __DIR__ . "$_..$_..$_..$_$path";
+        return __DIR__ . "$_..$_..$_..$_..$_..$_$path";
     }
 }
 
